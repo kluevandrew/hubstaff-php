@@ -5,12 +5,12 @@ Installation
 
 Include the hubstaff.php file in your project
 
-Use your personal APP_TOKEN found in your account settings to the config file.
-
+Use your personal ```APP_TOKEN``` found in your account settings to the config file.
+```
   define("App_Token","<Hubstaff Application Token>");
   define("email","<Hubstaff Account Email>");
   define("password","<Hubstaff Account Password>");
-
+```
 ## Usage
 
 Calls for Hubstuff API v1 are relative to the base url https://api.hubstaff.com/v1/
