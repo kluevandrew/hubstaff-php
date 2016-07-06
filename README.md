@@ -1,9 +1,10 @@
 Hubstaff PHP Client
+
 A PHP toolkit for Hubstaff API.
 
 Installation
 
-Include the hubstaff.php file in your project
+Include the ```hubstaff.php``` file in your project
 
 Use your personal ```APP_TOKEN``` found in your account settings to the config file.
 ```
