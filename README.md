@@ -2,7 +2,7 @@ Hubstaff PHP Client
 
 A PHP toolkit for Hubstaff API.
 
-Installation
+## Installation
 
 Include the ```hubstaff.php``` file in your project
 
