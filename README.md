@@ -1,4 +1,4 @@
-Hubstaff PHP Client
+# Hubstaff PHP Client
 
 A PHP toolkit for Hubstaff API.
 
