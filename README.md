@@ -53,7 +53,7 @@ API actions are available as methods on the client object. Currently, the Hubsta
 
 Here are some common use cases for the Hubstaff v1 API client.
 
-First configure the ``config.php`` gem with your ``APP_TOKEN``, ``email`` and ``password``.
+First configure the ``config.php`` with your ``APP_TOKEN``, ``email`` and ``password``.
 
 ### List users
 
