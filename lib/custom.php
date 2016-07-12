@@ -1,12 +1,12 @@
 <?php 
 	class custom
 	{
-		public function custom_report($starttime, $endtime, $options, $url)
+		public function custom_report($start_date, $end_date, $options, $url)
 		{
 			$fields["Auth-Token"] = $_SESSION['Auth-Token'];
 			$fields["App-token"] = $_SESSION['App-Token'];
-			$fields["start_time"] = $starttime;
-			$fields["stop_time"] = $endtime;
+			$fields["start_date"] = $start_date;
+			$fields["end_date"] = $end_date;
 
 			if(isset($options['organizations']))
 			{
@@ -47,8 +47,8 @@
 
 			$parameters["Auth-Token"] = "header";
 			$parameters["App-token"] = "header";
-			$parameters["start_time"] = "";
-			$parameters["stop_time"] = "";
+			$parameters["start_date"] = "";
+			$parameters["end_date"] = "";
 			
 			$curl = new curl();
 

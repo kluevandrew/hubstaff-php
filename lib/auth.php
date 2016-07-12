@@ -1,5 +1,5 @@
 <?php 
-	require_once "./helper/curl.php";
+	require_once $_SESSION['root']."helper/curl.php";
 	class userauth
 	{
 		
@@ -15,11 +15,9 @@
 		}	
    		public function auth($app_token, $email, $password,$url)
 		{
-			if(is_file("./store/auth.txt"))
+			if($_SESSION['Auth-Token'])
 			{
-				$file = fopen("./store/auth.txt","r");
-				$auth_token = fread($file,filesize("./store/auth.txt"));
-				fclose($file);
+				$auth_token = $_SESSION['Auth-Token'];
 			}else
 			{
 				$fields["App-token"] = $app_token;
@@ -33,9 +31,7 @@
 
 				$auth_data = json_decode($curl->send($fields, $parameters, $url, 1));
 				$auth_token = $auth_data->user->auth_token;				
-				$file = fopen("./store/auth.txt","w+");
-				fwrite($file, $auth_token);
-				fclose($file);
+				
 			}
 			return $auth_token;			
 			
