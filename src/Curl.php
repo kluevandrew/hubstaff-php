@@ -23,10 +23,11 @@ class Curl
             curl_setopt($curl, CURLOPT_URL, $url);
         }
         curl_setopt($curl, CURLOPT_HTTPHEADER, $header_string);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
         if ($type) {
             curl_setopt($curl, CURLOPT_POST, count($fields));
             curl_setopt($curl, CURLOPT_POSTFIELDS, $post_string);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         }
         $result = curl_exec($curl);
         curl_close($curl);
