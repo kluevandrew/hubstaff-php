@@ -5,6 +5,9 @@ class Projects extends AbstractComponent
 {
     public function getprojects($status, $offset, $url)
     {
+        $fields = [];
+        $parameters = [];
+        
         $fields["offset"] = $offset;
         if ($status) {
             $fields["status"] = $status;
@@ -15,21 +18,17 @@ class Projects extends AbstractComponent
             $parameters["status"] = "";
         }
 
-        return json_decode($this->request($fields, $parameters, $url));
+        return $this->request($url, $fields, $parameters);
     }
 
     public function find_project($url)
     {
-        return json_decode($this->request([], [], $url));
+        return $this->request($url);
     }
 
     public function find_project_members($offset, $url)
     {
-        $fields["offset"] = $offset;
-
-        $parameters["offset"] = "";
-
-        return json_decode($this->request($fields, $parameters, $url));
+        return $this->request($url, ['offset' => $offset], ['offset' => '']);
     }
 
 }

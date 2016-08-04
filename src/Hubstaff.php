@@ -81,7 +81,7 @@ class Hubstaff
 
     public function auth($email, $password)
     {
-        return $this->auth->auth($this->app_token, $email, $password, self::BASE_URL . self::AUTH);
+        return $this->auth->auth($email, $password, self::BASE_URL . self::AUTH);
     }
 
     public function users($organization_memberships = 0, $project_memberships = 0, $offset = 0)

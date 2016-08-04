@@ -1,12 +1,13 @@
 <?php
 namespace Hubstaff\Components;
 
-use Hubstaff\Curl;
-
 class Users extends AbstractComponent
 {
     public function getusers($organization_memberships, $project_memberships, $offset, $url)
     {
+        $fields = [];
+        $parameters = [];
+        
         $fields["organization_memberships"] = (int)$organization_memberships;
         $fields["project_memberships"] = (int)$project_memberships;
         $fields["offset"] = $offset;
@@ -15,29 +16,22 @@ class Users extends AbstractComponent
         $parameters["project_memberships"] = "";
         $parameters["offset"] = "";
 
-        return json_decode($this->request($fields, $parameters, $url));
+        return $this->request($url, $fields, $parameters);
     }
 
     public function find_user($url)
     {
-        return json_decode($this->request([], [], $url));
+        return $this->request($url);
     }
 
     public function find_user_orgs($offset, $url)
     {
-        $fields["offset"] = $offset;
-        $parameters["offset"] = "header";
-
-        return json_decode($this->request($fields, $parameters, $url));
+        return $this->request($url, ['offset' => $offset], ['offset' => '']);
     }
 
     public function find_user_projects($offset, $url)
     {
-        $fields["offset"] = $offset;
-        $parameters["offset"] = "header";
-
-        return json_decode($this->request($fields, $parameters, $url));
+        return $this->request($url, ['offset' => $offset], ['offset' => '']);
     }
-}
 
-?>
+}

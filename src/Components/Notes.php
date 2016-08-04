@@ -5,6 +5,8 @@ class Notes extends AbstractComponent
 {
     public function getnotes($starttime, $endtime, $offset, $options, $url)
     {
+        $fields = [];
+        $parameters = [];
         $fields["start_time"] = $starttime;
         $fields["stop_time"] = $endtime;
 
@@ -28,12 +30,11 @@ class Notes extends AbstractComponent
         $parameters["stop_time"] = "";
         $parameters["offset"] = "";
 
-        return json_decode($this->request($fields, $parameters, $url));
+        return $this->request($url, $fields, $parameters);
     }
 
     public function find_note($url)
     {
-        return json_decode($this->request([], [], $url));
+        return $this->request($url);
     }
-    
 }

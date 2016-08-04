@@ -24,7 +24,7 @@ class Weekly extends AbstractComponent
             $parameters["users"] = "";
         }
 
-        return json_decode($this->request($fields, $parameters, $url));
+        return $this->request($url, $fields, $parameters);
     }
 
     public function weekly_my($options, $url)
@@ -49,7 +49,7 @@ class Weekly extends AbstractComponent
             $parameters["users"] = "";
         }
 
-        return json_decode($this->request($fields, $parameters, $url));
+        return $this->request($url, $fields, $parameters);
     }
 
 }

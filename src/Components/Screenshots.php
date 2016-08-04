@@ -1,12 +1,13 @@
 <?php
 namespace Hubstaff\Components;
 
-use Hubstaff\Curl;
-
 class Screenshots extends AbstractComponent
 {
     public function getscreenshots($starttime, $endtime, $offset, $options, $url)
     {
+        $fields = [];
+        $parameters = [];
+        
         $fields["start_time"] = $starttime;
         $fields["stop_time"] = $endtime;
 
@@ -30,7 +31,7 @@ class Screenshots extends AbstractComponent
         $parameters["stop_time"] = "";
         $parameters["offset"] = "";
 
-        return json_decode($this->request($fields, $parameters, $url));
+        return $this->request($url, $fields, $parameters);
     }
 
 }
