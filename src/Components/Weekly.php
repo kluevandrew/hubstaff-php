@@ -1,14 +1,12 @@
 <?php
 namespace Hubstaff\Components;
 
-use Hubstaff\Curl;
-
 class Weekly extends AbstractComponent
 {
     public function weekly_team($options, $url)
     {
-        $fields["Auth-Token"] = $_SESSION['Auth-Token'];
-        $fields["App-token"] = $_SESSION['App-Token'];
+        $fields = [];
+        $parameters = [];
         if (isset($options['date'])) {
             $fields['date'] = $options['date'];
             $parameters["date"] = "";
@@ -26,20 +24,14 @@ class Weekly extends AbstractComponent
             $parameters["users"] = "";
         }
 
-
-        $parameters["Auth-Token"] = "header";
-        $parameters["App-token"] = "header";
-
-        $curl = new Curl();
-        $org_data = json_decode($curl->send($fields, $parameters, $url));
-
-        return $org_data;
+        return json_decode($this->request($fields, $parameters, $url));
     }
 
     public function weekly_my($options, $url)
     {
-        $fields["Auth-Token"] = $_SESSION['Auth-Token'];
-        $fields["App-token"] = $_SESSION['App-Token'];
+        $fields = [];
+        $parameters = [];
+
         if (isset($options['date'])) {
             $fields['date'] = $options['date'];
             $parameters["date"] = "";
@@ -57,15 +49,7 @@ class Weekly extends AbstractComponent
             $parameters["users"] = "";
         }
 
-
-        $parameters["Auth-Token"] = "header";
-        $parameters["App-token"] = "header";
-
-        $curl = new Curl();
-
-        $org_data = json_decode($curl->send($fields, $parameters, $url));
-
-        return $org_data;
+        return json_decode($this->request($fields, $parameters, $url));
     }
 
 }

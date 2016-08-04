@@ -2,7 +2,6 @@
 
 namespace Hubstaff;
 
-use Hubstaff\Components\AbstractComponent;
 use Hubstaff\Components\Activities;
 use Hubstaff\Components\Auth;
 use Hubstaff\Components\Custom;
@@ -142,17 +141,17 @@ class Hubstaff
 
     public function activities($start_time, $stop_time, $offset = 0, $options = [])
     {
-        return $this->activities->getactivities($start_time, $stop_time, $offset = 0, $options, self::BASE_URL . self::ACTIVITIES);
+        return $this->activities->getActivities($start_time, $stop_time, $offset, $options, self::BASE_URL . self::ACTIVITIES);
     }
 
     public function screenshots($start_time, $stop_time, $offset = 0, $options = [])
     {
-        return $this->screenshots->getscreenshots($start_time, $stop_time, $offset = 0, $options, self::BASE_URL . self::SCREENSHOTS);
+        return $this->screenshots->getscreenshots($start_time, $stop_time, $offset, $options, self::BASE_URL . self::SCREENSHOTS);
     }
 
     public function notes($start_time, $stop_time, $offset = 0, $options = [])
     {
-        return $this->notes->getnotes($start_time, $stop_time, $offset = 0, $options, self::BASE_URL . self::NOTES);
+        return $this->notes->getnotes($start_time, $stop_time, $offset, $options, self::BASE_URL . self::NOTES);
     }
 
     public function find_note($id)
@@ -172,32 +171,32 @@ class Hubstaff
 
     public function custom_date_team($start_date, $end_date, $options = [])
     {
-        return $this->custom->custom_report($start_date, $end_date, $options, self::BASE_URL . self::CUSTOM_DATE_TEAM);
+        return $this->custom->customReport($start_date, $end_date, $options, self::BASE_URL . self::CUSTOM_DATE_TEAM);
     }
 
     public function custom_date_my($start_date, $end_date, $options = [])
     {
-        return $this->custom->custom_report($start_date, $end_date, $options, self::BASE_URL . self::CUSTOM_DATE_MY);
+        return $this->custom->customReport($start_date, $end_date, $options, self::BASE_URL . self::CUSTOM_DATE_MY);
     }
 
     public function custom_member_team($start_date, $end_date, $options = [])
     {
-        return $this->custom->custom_report($start_date, $end_date, $options, self::BASE_URL . self::CUSTOM_MEMBER_TEAM);
+        return $this->custom->customReport($start_date, $end_date, $options, self::BASE_URL . self::CUSTOM_MEMBER_TEAM);
     }
 
     public function custom_member_my($start_date, $end_date, $options = [])
     {
-        return $this->custom->custom_report($start_date, $end_date, $options, self::BASE_URL . self::CUSTOM_MEMBER_MY);
+        return $this->custom->customReport($start_date, $end_date, $options, self::BASE_URL . self::CUSTOM_MEMBER_MY);
     }
 
     public function custom_project_team($start_date, $end_date, $options = [])
     {
-        return $this->custom->custom_report($start_date, $end_date, $options, self::BASE_URL . self::CUSTOM_PROJECT_TEAM);
+        return $this->custom->customReport($start_date, $end_date, $options, self::BASE_URL . self::CUSTOM_PROJECT_TEAM);
     }
 
     public function custom_project_my($start_date, $end_date, $options = [])
     {
-        return $this->custom->custom_report($start_date, $end_date, $options, self::BASE_URL . self::CUSTOM_PROJECT_MY);
+        return $this->custom->customReport($start_date, $end_date, $options, self::BASE_URL . self::CUSTOM_PROJECT_MY);
     }
 
     /**

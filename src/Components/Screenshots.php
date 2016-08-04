@@ -7,8 +7,6 @@ class Screenshots extends AbstractComponent
 {
     public function getscreenshots($starttime, $endtime, $offset, $options, $url)
     {
-        $fields["Auth-Token"] = $_SESSION['Auth-Token'];
-        $fields["App-token"] = $_SESSION['App-Token'];
         $fields["start_time"] = $starttime;
         $fields["stop_time"] = $endtime;
 
@@ -28,15 +26,11 @@ class Screenshots extends AbstractComponent
         $fields["offset"] = $offset;
 
 
-        $parameters["Auth-Token"] = "header";
-        $parameters["App-token"] = "header";
         $parameters["start_time"] = "";
         $parameters["stop_time"] = "";
         $parameters["offset"] = "";
 
-        $curl = new Curl();
-
-        return json_decode($curl->send($fields, $parameters, $url));
+        return json_decode($this->request($fields, $parameters, $url));
     }
 
 }

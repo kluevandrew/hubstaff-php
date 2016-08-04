@@ -1,14 +1,10 @@
 <?php
 namespace Hubstaff\Components;
 
-use Hubstaff\Curl;
-
 class Notes extends AbstractComponent
 {
     public function getnotes($starttime, $endtime, $offset, $options, $url)
     {
-        $fields["Auth-Token"] = $_SESSION['Auth-Token'];
-        $fields["App-token"] = $_SESSION['App-Token'];
         $fields["start_time"] = $starttime;
         $fields["stop_time"] = $endtime;
 
@@ -28,32 +24,16 @@ class Notes extends AbstractComponent
         $fields["offset"] = $offset;
 
 
-        $parameters["Auth-Token"] = "header";
-        $parameters["App-token"] = "header";
         $parameters["start_time"] = "";
         $parameters["stop_time"] = "";
         $parameters["offset"] = "";
 
-        $curl = new Curl();
-
-        $org_data = json_decode($curl->send($fields, $parameters, $url));
-
-        return $org_data;
+        return json_decode($this->request($fields, $parameters, $url));
     }
 
     public function find_note($url)
     {
-        $fields["Auth-Token"] = $_SESSION['Auth-Token'];
-        $fields["App-token"] = $_SESSION['App-Token'];
-
-        $parameters["Auth-Token"] = "header";
-        $parameters["App-token"] = "header";
-
-        $curl = new Curl();
-
-        $user_data = json_decode($curl->send($fields, $parameters, $url));
-
-        return $user_data;
+        return json_decode($this->request([], [], $url));
     }
     
 }

@@ -2,44 +2,47 @@
 
 namespace Hubstaff\Components;
 
-use Hubstaff\Curl;
-
+/**
+ * Class Activities
+ * @package Hubstaff\Components
+ */
 class Activities extends AbstractComponent
 {
-    public function getactivities($starttime, $endtime, $offset, $options, $url)
+    /**
+     * @param $startTime
+     * @param $endTime
+     * @param $offset
+     * @param $options
+     * @param $url
+     * @return mixed
+     */
+    public function getActivities($startTime, $endTime, $offset, $options, $url)
     {
-        $fields["Auth-Token"] = $_SESSION['Auth-Token'];
-        $fields["App-token"] = $_SESSION['App-Token'];
-        $fields["start_time"] = $starttime;
-        $fields["stop_time"] = $endtime;
+        $fields = [];
+        $parameters = [];
+        
+        $fields['start_time'] = $startTime;
+        $fields['stop_time'] = $endTime;
 
         if (isset($options['organizations'])) {
             $fields['organizations'] = $options['organizations'];
-            $parameters["organizations"] = "";
+            $parameters['organizations'] = '';
         }
         if (isset($options['projects'])) {
             $fields['projects'] = $options['projects'];
-            $parameters["projects"] = "";
+            $parameters['projects'] = '';
         }
         if (isset($options['users'])) {
             $fields['users'] = $options['users'];
-            $parameters["users"] = "";
+            $parameters['users'] = '';
         }
 
-        $fields["offset"] = $offset;
+        $fields['offset'] = $offset;
 
+        $parameters['start_time'] = '';
+        $parameters['stop_time'] = '';
+        $parameters['offset'] = '';
 
-        $parameters["Auth-Token"] = "header";
-        $parameters["App-token"] = "header";
-        $parameters["start_time"] = "";
-        $parameters["stop_time"] = "";
-        $parameters["offset"] = "";
-
-        $curl = new Curl();
-
-        $org_data = json_decode($curl->send($fields, $parameters, $url));
-
-        return $org_data;
+        return $this->request($url, $fields, $parameters);
     }
-    
 }
