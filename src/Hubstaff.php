@@ -353,4 +353,11 @@ class Hubstaff
         return $this->custom->customReport($start_date, $end_date, $options, self::CUSTOM_PROJECT_MY);
     }
 
+    /**
+     * @return StatisticStorageInterface
+     */
+    public function stats()
+    {
+        return $this->statisticStorage;
+    }
 }
