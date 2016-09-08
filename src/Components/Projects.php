@@ -5,30 +5,24 @@ class Projects extends AbstractComponent
 {
     public function getprojects($status, $offset, $url)
     {
-        $fields = [];
         $parameters = [];
-        
-        $fields["offset"] = $offset;
+
+        $parameters["offset"] = $offset;
         if ($status) {
-            $fields["status"] = $status;
+            $parameters["status"] = $status;
         }
 
-        $parameters["offset"] = "";
-        if ($status) {
-            $parameters["status"] = "";
-        }
-
-        return $this->request($url, $fields, $parameters);
+        return $this->hubstaff->get($url, $parameters);
     }
 
     public function find_project($url)
     {
-        return $this->request($url);
+        return  $this->hubstaff->get($url);
     }
 
     public function find_project_members($offset, $url)
     {
-        return $this->request($url, ['offset' => $offset], ['offset' => '']);
+        return $this->hubstaff->get($url, ['offset' => $offset]);
     }
 
 }

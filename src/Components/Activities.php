@@ -18,31 +18,24 @@ class Activities extends AbstractComponent
      */
     public function getActivities($startTime, $endTime, $offset, $options, $url)
     {
-        $fields = [];
         $parameters = [];
-        
-        $fields['start_time'] = $startTime;
-        $fields['stop_time'] = $endTime;
+
+        $parameters['start_time'] = $startTime;
+        $parameters['stop_time'] = $endTime;
 
         if (isset($options['organizations'])) {
-            $fields['organizations'] = $options['organizations'];
-            $parameters['organizations'] = '';
+            $parameters['organizations'] = $options['organizations'];
         }
         if (isset($options['projects'])) {
-            $fields['projects'] = $options['projects'];
-            $parameters['projects'] = '';
+            $parameters['projects'] = $options['projects'];
         }
         if (isset($options['users'])) {
-            $fields['users'] = $options['users'];
-            $parameters['users'] = '';
+            $parameters['users'] = $options['users'];
         }
 
-        $fields['offset'] = $offset;
+        $parameters['offset'] = $offset;
 
-        $parameters['start_time'] = '';
-        $parameters['stop_time'] = '';
-        $parameters['offset'] = '';
 
-        return $this->request($url, $fields, $parameters);
+        return $this->hubstaff->get($url, $parameters);
     }
 }

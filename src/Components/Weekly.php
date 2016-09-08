@@ -5,51 +5,41 @@ class Weekly extends AbstractComponent
 {
     public function weekly_team($options, $url)
     {
-        $fields = [];
         $parameters = [];
         if (isset($options['date'])) {
-            $fields['date'] = $options['date'];
-            $parameters["date"] = "";
+            $parameters['date'] = $options['date'];
         }
         if (isset($options['organizations'])) {
-            $fields['organizations'] = $options['organizations'];
-            $parameters["organizations"] = "";
+            $parameters['organizations'] = $options['organizations'];
         }
         if (isset($options['projects'])) {
-            $fields['projects'] = $options['projects'];
-            $parameters["projects"] = "";
+            $parameters['projects'] = $options['projects'];
         }
         if (isset($options['users'])) {
-            $fields['users'] = $options['users'];
-            $parameters["users"] = "";
+            $parameters['users'] = $options['users'];
         }
 
-        return $this->request($url, $fields, $parameters);
+        return $this->hubstaff->get($url, $parameters);
     }
 
     public function weekly_my($options, $url)
     {
-        $fields = [];
         $parameters = [];
 
         if (isset($options['date'])) {
-            $fields['date'] = $options['date'];
-            $parameters["date"] = "";
+            $parameters['date'] = $options['date'];
         }
         if (isset($options['organizations'])) {
-            $fields['organizations'] = $options['organizations'];
-            $parameters["organizations"] = "";
+            $parameters['organizations'] = $options['organizations'];
         }
         if (isset($options['projects'])) {
-            $fields['projects'] = $options['projects'];
-            $parameters["projects"] = "";
+            $parameters['projects'] = $options['projects'];
         }
         if (isset($options['users'])) {
-            $fields['users'] = $options['users'];
-            $parameters["users"] = "";
+            $parameters['users'] = $options['users'];
         }
 
-        return $this->request($url, $fields, $parameters);
+        return $this->hubstaff->get($url, $parameters);
     }
 
 }
