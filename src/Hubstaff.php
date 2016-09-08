@@ -242,6 +242,10 @@ class Hubstaff
         )['auth_token'];
     }
 
+    public function users($organization_memberships = 0, $project_memberships = 0, $offset = 0)
+    {
+        return $this->users->getUsers($organization_memberships, $project_memberships, $offset, self::USERS);
+    }
 
     public function find_user($id)
     {
