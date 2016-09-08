@@ -206,6 +206,10 @@ class Hubstaff
             throw new \RuntimeException();
         }
 
+        if (isset($response['error'])) {
+            throw new \RuntimeException($response['error']);
+        }
+
         return $response;
     }
 
