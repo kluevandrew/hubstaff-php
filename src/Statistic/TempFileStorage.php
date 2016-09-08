@@ -82,7 +82,9 @@ class TempFileStorage implements StatisticStorageInterface
      */
     public function incrementRequests()
     {
-       $this->requests[] = new \DateTime();
+        $this->dropInvalidDates();
+
+        $this->requests[] = new \DateTime();
     }
 
     /**
@@ -90,6 +92,8 @@ class TempFileStorage implements StatisticStorageInterface
      */
     public function incrementAuthRequest()
     {
+        $this->dropInvalidDates();
+
         $this->requests[] = new \DateTime();
     }
 
@@ -98,6 +102,8 @@ class TempFileStorage implements StatisticStorageInterface
      */
     public function getLastRequestDate()
     {
+        $this->dropInvalidDates();
+
         $length = count($this->requests);
 
         return $length ? $this->requests[$length - 1] : null;
@@ -108,9 +114,29 @@ class TempFileStorage implements StatisticStorageInterface
      */
     public function getLastAuthRequestDate()
     {
+        $this->dropInvalidDates();
+
         $length = count($this->authRequests);
 
         return $length ? $this->authRequests[$length - 1] : null;
+    }
+
+    protected function dropInvalidDates()
+    {
+        $now = new \DateTime();
+        $hourAgo = $now->sub(new \DateInterval('PT1H'));
+
+        foreach ($this->requests as $key => $requestDate) {
+            if ($requestDate < $hourAgo) {
+                unset($this->requests[$key]);
+            }
+        }
+
+        foreach ($this->authRequests as $key => $requestDate) {
+            if ($requestDate < $hourAgo) {
+                unset($this->requests[$key]);
+            }
+        }
     }
 
     /**
@@ -118,6 +144,8 @@ class TempFileStorage implements StatisticStorageInterface
      */
     public function getLastHourRequestsCount()
     {
+        $this->dropInvalidDates();
+
         return count($this->requests);
     }
 
@@ -126,6 +154,8 @@ class TempFileStorage implements StatisticStorageInterface
      */
     public function getLastHourAuthRequestsCount()
     {
+        $this->dropInvalidDates();
+
         return count($this->authRequests);
     }
 }
