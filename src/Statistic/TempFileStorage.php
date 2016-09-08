@@ -118,7 +118,7 @@ class TempFileStorage implements StatisticStorageInterface
      */
     public function getLastHourRequestsCount()
     {
-        return count($this->authRequests);
+        return count($this->requests);
     }
 
     /**
