@@ -222,6 +222,14 @@ class Hubstaff
     }
 
     /**
+     * @void
+     */
+    public function reloadStatistics()
+    {
+        $this->statisticStorage->reload();
+    }
+
+    /**
      * Destructor
      * @void
      */

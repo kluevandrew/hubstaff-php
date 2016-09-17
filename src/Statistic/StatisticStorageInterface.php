@@ -38,4 +38,9 @@ interface StatisticStorageInterface
      * @return void
      */
     public function save();
+
+    /**
+     * @return mixed
+     */
+    public function reload();
 }

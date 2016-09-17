@@ -38,6 +38,13 @@ class TempFileStorage implements StatisticStorageInterface
         $this->load();
     }
 
+    public function reload()
+    {
+        $this->requests = [];
+        $this->authRequests = [];
+        $this->load();
+    }
+
     /**
      * @void
      */
